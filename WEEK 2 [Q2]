@@ -1,0 +1,21 @@
+class book {
+    String title;
+    String author;
+    double price;
+    Book(String t,String a,int p) {
+        title=t;
+        author=a;
+        price=p;
+    }
+    void display() {
+        System.out.println("title:"+title);
+        System.out.println("author:"+author);
+        System.out.println("price:"+price);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Book b=new Book("oliver twist","Charles Dickens",600);
+        b.display();
+    }
+}
