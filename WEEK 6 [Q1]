@@ -1,0 +1,58 @@
+class Vehicle {
+    String vehicleNum;
+    String brand;
+    int speed;
+
+    Vehicle(String vehicleNum, String brand, int speed) {
+        this.vehicleNum=vehicleNum;
+        this.brand=brand;
+        this.speed=speed;
+    }
+    void displayDetails() {
+        System.out.println("Vehicle Number:" + vehicleNum);
+        System.out.println("Brand:" + brand);
+        System.out.println("Speed:" + speed + "km/h");
+    }
+}
+class Car extends Vehicle {
+    int numberOfDoors;
+    Car(String vehicleNum, String brand, int speed, int numberOfDoors) {
+        super(vehicleNum, brand, speed);
+        this.numberOfDoors = numberOfDoors;
+    }
+    @Override
+    void displayDetails() {
+        System.out.println("\nCar Details:");
+        System.out.println("Vehicle Number: " + vehicleNum);
+        System.out.println("Brand: " + brand);
+        System.out.println("Speed: " + speed + " km/h");
+        System.out.println("Number of Doors: " + numberOfDoors);
+    }
+}
+class Bike extends Vehicle {
+    boolean hasGear;
+
+    Bike(String vehicleNum, String brand, int speed, boolean hasGear) {
+        super(vehicleNum, brand, speed);
+        this.hasGear = hasGear;
+    }
+
+    @Override
+    void displayDetails() {
+        System.out.println("\nBike Details:");
+        System.out.println("Vehicle Number: " + vehicleNum);
+        System.out.println("Brand: " + brand);
+        System.out.println("Speed: " + speed + " km/h");
+        System.out.println("Has Gear: " + hasGear);
+    }
+}
+public class vehicaltravel {
+    public static void main(String[] args) {
+
+        Vehicle vehicle = new Car("CAR101", "Toyota", 180, 4);
+        vehicle.displayDetails();
+
+        vehicle = new Bike("BIKE202", "Yamaha", 120, true);
+        vehicle.displayDetails();
+    }
+}
