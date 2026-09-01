@@ -1,0 +1,40 @@
+interface Confidential {
+}
+class Document {
+    String name;
+    Document(String name) {
+        this.name = name;
+    }
+}
+class PrivateDocument extends Document implements Confidential {
+    PrivateDocument(String name) {
+        super(name);
+    }
+}
+class FinancialDocument extends Document implements Confidential {
+    FinancialDocument(String name) {
+        super(name);
+    }
+}
+class PublicDocument extends Document {
+    PublicDocument(String name) {
+        super(name);
+    }
+}
+public class week_6_4{
+    public static void main(String[] args) {
+        Document doc1 = new PrivateDocument("Employee Records");
+        Document doc2 = new PublicDocument("Company Brochure");
+        Document doc3 = new FinancialDocument("Financial Report");
+        checkConfidential(doc1);
+        checkConfidential(doc2);
+        checkConfidential(doc3);
+    }
+    static void checkConfidential(Document doc) {
+        if (doc instanceof Confidential) {
+            System.out.println(doc.name + " is Confidential");
+        } else {
+            System.out.println(doc.name + " is NOT Confidential");
+        }
+    }
+}
