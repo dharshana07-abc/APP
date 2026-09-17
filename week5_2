@@ -1,0 +1,54 @@
+class Employee {
+    String name;
+    int id;
+    double basicSalary;
+    Employee(String name, int id, double basicSalary) {
+        this.name = name;
+        this.id = id;
+        this.basicSalary = basicSalary;
+    }
+    double calculateSalary() {
+        return basicSalary;
+    }
+    void display() {
+        System.out.println("Name: " + name);
+        System.out.println("Employee ID: " + id);
+        System.out.println("Salary: Rs." + calculateSalary());
+        System.out.println();
+    }
+}
+class Professor extends Employee {
+    Professor(String name, int id, double salary) {
+        super(name, id, salary);}
+    double calculateSalary() {
+        return basicSalary + basicSalary * 0.30;
+    }
+}
+class LabAssistant extends Employee {
+    LabAssistant(String name, int id, double salary) {
+        super(name, id, salary);
+    }
+    double calculateSalary() {
+        return basicSalary + basicSalary * 0.20;
+    }
+}
+class AdministrativeStaff extends Employee {
+    AdministrativeStaff(String name, int id, double salary) {
+        super(name, id, salary);
+    }
+    double calculateSalary() {
+        return basicSalary + basicSalary * 0.10;
+    }
+}
+public class UniversityMain {
+    public static void main(String[] args) {
+        Employee[] e = {
+            new Professor("Ravi", 101, 50000),
+            new LabAssistant("Priya", 102, 30000),
+            new AdministrativeStaff("Arun", 103, 25000)
+        };
+        for (int i = 0; i < e.length; i++) {
+            e[i].display();
+        }
+    }
+}
