@@ -1,0 +1,19 @@
+/*Program 1 – Addition of Two Numbers
+        Read two integers and display their sum.
+        Concept: Variables, input/output*/
+package WEEK1;
+import java.util.Scanner;
+public class week1_Q1 {
+    static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter the number1:");
+        int a = sc.nextInt();
+        System.out.println("enter the number2");
+        int b = sc.nextInt();
+        int c = a + b;
+        System.out.println("the sum of a+b=" + c);
+    }
+}
+
+
+
