@@ -1,0 +1,36 @@
+class TrafficJunction extends Thread {
+    private String status;
+    private int delay;
+    public TrafficJunction(String status, int delay) {
+        this.status = status;
+        this.delay = delay;
+    }
+    public void run() {
+        try {
+            for (int i = 1; i <= 3; i++) {
+                System.out.println(
+                    Thread.currentThread().getName() + ": Traffic Status - " + status+ " | Count: " + i);
+
+                Thread.sleep(delay);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+public class TrafficManagement {
+    public static void main(String[] args) {
+        TrafficJunction t1 =
+            new TrafficJunction("Heavy Traffic", 1000);
+        TrafficJunction t2 =
+            new TrafficJunction("Moderate Traffic", 1500);
+        TrafficJunction t3 =
+            new TrafficJunction("Light Traffic", 2000);
+        t1.setName("Junction 1");
+        t2.setName("Junction 2");
+        t3.setName("Junction 3");
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
