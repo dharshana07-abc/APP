@@ -1,0 +1,56 @@
+
+class Transaction implements Runnable {
+    public void run() {
+        try {
+            for (int i = 1; i <= 3; i++) {
+                System.out.println(Thread.currentThread().getName()
+                        + ": Processing Transaction - Count " + i);
+                Thread.sleep(1000);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+
+class Balance implements Runnable {
+    public void run() {
+        try {
+            for (int i = 1; i <= 3; i++) {
+                System.out.println(Thread.currentThread().getName()
+                        + ": Updating Balance - Count " + i);
+                Thread.sleep(1500);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+
+class SMS implements Runnable {
+    public void run() {
+        try {
+            for (int i = 1; i <= 3; i++) {
+                System.out.println(Thread.currentThread().getName()
+                        + ": Sending SMS Notification - Count " + i);
+                Thread.sleep(2000);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+public class BankingSystem {
+    public static void main(String[] args) {
+
+        Thread t1 = new Thread(new Transaction());
+        Thread t2 = new Thread(new Balance());
+        Thread t3 = new Thread(new SMS());
+        t1.setName("Transaction Thread");
+        t2.setName("Balance Thread");
+        t3.setName("SMS Thread");
+        t1.start();
+        t2.start();
+        t3.start();
+    }
+}
