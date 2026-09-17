@@ -1,0 +1,58 @@
+
+import java.util.Scanner;
+
+class Employee {
+    int id;
+    String name;
+    double monthlySalary;
+    // Constructor
+    Employee(int id, String name, double monthlySalary) {
+        this.id = id;
+        this.name = name;
+        this.monthlySalary = monthlySalary;
+    }
+    // Calculate annual salary
+    double calculateAnnualSalary() {
+        return monthlySalary * 12;
+    }
+    // Check bonus eligibility
+    String checkEligibility() {
+        return (monthlySalary >= 30000)
+                ? "Eligible" : "Not Eligible";
+    }
+    double calculateBonus() {
+        return (monthlySalary >= 30000)
+                ? calculateAnnualSalary() * 0.10 : 0;
+    }
+    void display() {
+        System.out.println("\nEmployee ID: " + id);
+        System.out.println("Employee Name: " + name);
+        System.out.println("Monthly Salary: Rs." + monthlySalary);
+        System.out.println("Annual Salary: Rs." + calculateAnnualSalary());
+        System.out.println("Bonus: Rs." + calculateBonus());
+        System.out.println("Bonus Eligibility: " + checkEligibility());
+    }
+}
+public class EmployeeManagement {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Employee[] employees = new Employee[5];
+        for (int i = 0; i < 5; i++) {
+            System.out.println("\nEnter Employee " + (i + 1) + " Details:");
+            System.out.print("Employee ID: ");
+            int id = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Employee Name: ");
+            String name = sc.nextLine();
+            System.out.print("Monthly Salary: ");
+            double salary = sc.nextDouble();
+            employees[i] = new Employee(id, name, salary);
+        }
+        System.out.println("\n=== EMPLOYEE DETAILS ===");
+        for (int i = 0; i < 5; i++) {
+            employees[i].display();
+        }
+
+        sc.close();
+    }
+}
