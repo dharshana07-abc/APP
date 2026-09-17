@@ -1,0 +1,77 @@
+import java.util.Scanner;
+class Student {
+    int rollNo;
+    String name;
+    int[] marks = new int[3];
+    double attendance;
+    Student(int rollNo, String name, int[] marks, double attendance) {
+        this.rollNo = rollNo;
+        this.name = name;
+        this.marks = marks;
+        this.attendance = attendance;
+    }
+    double calculateAverage() {
+        int total = 0;
+
+        for (int i = 0; i < 3; i++) {
+            total += marks[i];
+        }
+        return total / 3.0;
+    }
+    void display() {
+        int total = 0;
+        for (int i = 0; i < 3; i++) {
+            total += marks[i];
+        }
+        double average = total / 3.0;
+        String result = (average >= 50) ? "Pass" : "Fail";
+        String scholarship = (average >= 75 && attendance >= 80)
+                ? "Eligible" : "Not Eligible";
+        String performance = (average >= 85)
+                ? "Excellent" : "Good";
+        System.out.println("\nRoll Number: " + rollNo);
+        System.out.println("Student Name: " + name);
+        System.out.println("Total Marks: " + total);
+        System.out.println("Average Marks: " + average);
+        System.out.println("Attendance: " + attendance + "%");
+        System.out.println("Result: " + result);
+        System.out.println("Scholarship: " + scholarship);
+        System.out.println("Performance: " + performance);
+    }
+}
+public class StudentPerformance {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Student[] students = new Student[5];
+
+        for (int i = 0; i < 5; i++) {
+            System.out.println("\nEnter Student " + (i + 1) + " Details:");
+            System.out.print("Roll Number: ");
+            int rollNo = sc.nextInt();
+            sc.nextLine();
+            System.out.print("Student Name: ");
+            String name = sc.nextLine();
+            int[] marks = new int[3];
+            for (int j = 0; j < 3; j++) {
+                System.out.print("Subject " + (j + 1) + " Marks: ");
+                marks[j] = sc.nextInt();
+            }
+            System.out.print("Attendance Percentage: ");
+            double attendance = sc.nextDouble();
+            students[i] = new Student(rollNo, name, marks, attendance);
+        }
+        System.out.println("\n=== STUDENT PERFORMANCE REPORT ===");
+        Student topper = students[0];
+        for (int i = 0; i < 5; i++) {
+            students[i].display();
+            topper = (students[i].calculateAverage() >
+                    topper.calculateAverage())
+                    ? students[i] : topper;
+      }
+        System.out.println("\n=== STUDENT WITH HIGHEST AVERAGE ===");
+        System.out.println("Roll Number: " + topper.rollNo);
+        System.out.println("Student Name: " + topper.name);
+        System.out.println("Highest Average: " + topper.calculateAverage());
+        sc.close();
+    }
+}
