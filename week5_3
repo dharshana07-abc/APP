@@ -1,0 +1,53 @@
+import java.util.Scanner;
+interface Payment {
+    void makePayment(double amount);
+}
+class UPI implements Payment {
+    public void makePayment(double amount) {
+        System.out.println("Paid Rs." + amount + " using UPI");
+    }
+}
+class CreditCard implements Payment {
+    public void makePayment(double amount) {
+        System.out.println("Paid Rs." + amount + " using Credit Card");
+    }
+}
+class NetBanking implements Payment {
+    public void makePayment(double amount) {
+        System.out.println("Paid Rs." + amount + " using Net Banking");
+    }
+}
+public class PaymentMain {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("1. UPI");
+        System.out.println("2. Credit Card");
+        System.out.println("3. Net Banking");
+        System.out.print("Enter your choice: ");
+        int choice = sc.nextInt();
+        System.out.print("Enter amount: ");
+        double amount = sc.nextDouble();
+        Payment p;
+        switch (choice) {
+            case 1:
+                p = new UPI();
+                break;
+            case 2:
+                p = new CreditCard();
+                break;
+            case 3:
+                p = new NetBanking();
+                break;
+            default:
+                System.out.println("Invalid choice");
+                sc.close();
+                return;
+        }
+        if (amount > 0) {
+            p.makePayment(amount);
+        } else {
+            System.out.println("Invalid amount");
+        }
+        sc.close();
+    }
+}
